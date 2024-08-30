@@ -6,9 +6,9 @@ import Header from "@/components/Header";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import ActiveCollaborators from "./ActiveCollaborators";
 
-export default function CollaborativeRoom() {
+export default function CollaborativeRoom({ roomId, roomMetadata }: CollaborativeRoomProps) {
     return (
-        <RoomProvider id="my-room">
+        <RoomProvider id={roomId}>
             <ClientSideSuspense fallback={<div>Loading…</div>}>
                 <div className="collaborative-room">
                     <Header>

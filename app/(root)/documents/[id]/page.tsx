@@ -16,7 +16,7 @@ export default async function Document({ params: { id } }: SearchParamProps) {
 
     return (
         <main className="flex w-full flex-col items-center">
-            <CollaborativeRoom />
+            <CollaborativeRoom roomId={id} roomMetadata={room.metadata} />
         </main>
     );
 }
