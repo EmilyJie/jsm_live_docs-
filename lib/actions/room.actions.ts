@@ -33,7 +33,7 @@ export const createDocument = async ({ userId, email }: CreateDocumentParams) =>
     }
 };
 
-export const getDocuments = async ({ roomId, userId }: { roomId: string; userId: string }) => {
+export const getDocument = async ({ roomId, userId }: { roomId: string; userId: string }) => {
     try {
         const room = await liveblocks.getRoom(roomId);
 
@@ -63,5 +63,15 @@ export const updateDocument = async (roomId: string, title: string) => {
         return parseStringify(updatedRoom);
     } catch (error) {
         console.error(`Error happened while updating the document: ${error}`);
+    }
+};
+
+export const getDocuments = async (email: string) => {
+    try {
+        const rooms = await liveblocks.getRooms({ userId: email });
+
+        return parseStringify(rooms);
+    } catch (error) {
+        console.error(`Error happened while getting documents: ${error}`);
     }
 };

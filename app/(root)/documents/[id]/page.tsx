@@ -1,5 +1,5 @@
 import CollaborativeRoom from "@/components/CollaborativeRoom";
-import { getDocuments } from "@/lib/actions/room.actions";
+import { getDocument } from "@/lib/actions/room.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -7,7 +7,7 @@ export default async function Document({ params: { id } }: SearchParamProps) {
     const clerkUser = await currentUser();
     if (!clerkUser) redirect("/sign-in");
 
-    const room = await getDocuments({ roomId: id, userId: clerkUser.emailAddresses[0].emailAddress });
+    const room = await getDocument({ roomId: id, userId: clerkUser.emailAddresses[0].emailAddress });
     if (!room) {
         redirect("/");
     }
